@@ -16,7 +16,8 @@
 				"GitHub.copilot",
 				"ms-dotnettools.csdevkit",
 				"ms-dotnettools.csharp",
-				"ms-vscode.vscode-node-azure-pack"
+				"ms-vscode.vscode-node-azure-pack",
+				"github.vscode-github-actions"
 			]
 		}
 	}
