@@ -16,9 +16,6 @@ jobs:
         working-directory: src/webapp01
 
     steps:
-      - name: Check outbound ip address
-        run: curl ifconfig.io/ip
-
       - name: Checkout repo
         uses: actions/checkout@v3
 
