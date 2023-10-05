@@ -47,7 +47,8 @@ jobs:
         with:
           name: webapp01
 
-      - run: ls -la
+      - name: Zip package
+        run: zip -r webapp01.zip ./*
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
