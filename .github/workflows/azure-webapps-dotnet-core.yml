@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: demo1005-web01    # set this to the name of your Azure Web App
-  AZURE_WEBAPP_PACKAGE_PATH: './publish'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_NAME: demo1005-web01    
 
 jobs:
   build:
@@ -22,18 +21,21 @@ jobs:
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v2
+        with:
+          global-json-file: './src/global.json'
 
       - name: Build with dotnet
+        working-directory: './src/webapp01'
         run: |
-          dotnet restore
-          dotnet build 
-          dotnet publish -o ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+            dotnet restore
+            dotnet build 
+            dotnet publish -o ./publish
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: webapp01
-          path: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}/*
+          path: './src/webapp01/publish'
 
   deploy:
     runs-on: ubuntu-latest
